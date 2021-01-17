@@ -1,3 +1,14 @@
+body {
+  /*font-family: "Times New Roman", Times, serif;*/
+  font-family: "Raleway", sans-serif;
+  background-color: white;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 h1,
 h2,
 h3 {
@@ -19,18 +30,19 @@ h3 {
   text-transform: capitalize;
 }
 
-.today {
+header {
+  padding: 40px;
+}
+
+.Weather {
   padding: 0 20px;
 }
 
-.today img {
+.Weather img {
   width: 80px;
   position: relative;
   bottom: 7px;
 }
 .col {
   padding: 0;
-}
-.Weather {
-  margin-bottom: 30px;
 }

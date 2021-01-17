@@ -15,6 +15,9 @@ export default function Search() {
             />
           </form>
         </div>
+        <div class="col">
+            <button><i class="fas fa-map-marker-alt"></i></button>
+        </div>
         <div className="col unit">
           <a id="tempC" className="unit-used" href="/">
             °C

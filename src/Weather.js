@@ -7,7 +7,7 @@ export default function Weather() {
     <section className="Weather">
       <div className="row">
         <div className="col-7 border-end border-2 border-dark">
-          <h1 id="city">Berlin</h1> <h3 id="country">, Germany</h3>
+          <h1 id="city">Berlin</h1> <h3 id="country">, DE</h3>
           <br />
           <p id="time" className="date">
             Monday 13:24

@@ -1,6 +1,13 @@
 header {
   padding: 40px;
 }
+button {
+  background-color: white;
+  color: rgb(182, 180, 180);
+  border-width: 2px;
+  border-style: outset;
+  border-color: white;
+}
 
 .unit {
   text-align: right;
