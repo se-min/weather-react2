@@ -1,0 +1,36 @@
+h1,
+h2,
+h3 {
+  display: inline;
+}
+#currentTemp {
+  font-size: 40px;
+}
+h1 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 15px;
+}
+.date {
+  font-size: 15px;
+}
+#discription::first-letter {
+  text-transform: capitalize;
+}
+
+.today {
+  padding: 0 20px;
+}
+
+.today img {
+  width: 80px;
+  position: relative;
+  bottom: 7px;
+}
+.col {
+  padding: 0;
+}
+.Weather {
+  margin-bottom: 30px;
+}
