@@ -1,46 +1,71 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Weather.css";
 import icon from "./img/Sonne.png";
+import axios from "axios";
+
 
 export default function Weather() {
-  return (
+  let [submitState, setSubmitState] = useState (false);
+  const [weatherData, setWeatherData] =useState(null);
+  
+  
+  const apiKey ="774391238c6a53bc1cf424560a1347de";
+  let city = "Berlin";
+  let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;  
+  function displayWeather(response){
+    setWeatherData(
+      {city : response.data.name,
+      country : response.data.sys.country,
+      temp : Math.round(response.data.main.temp),
+      discription:  response.data.weather[0].description,
+      humidity :response.data.main.humidity,
+      wind : Math.round(response.data.wind.speed *3.6)
+    })
+
+    setSubmitState (true)
+  }
+  
+  axios.get(url).then(displayWeather);
+  if (submitState === true){ return (
     <section className="Weather">
       <div className="row">
         <div className="col-7 border-end border-2 border-dark">
-          <h1 id="city">Berlin</h1> <h3 id="country">, DE</h3>
+          <h1 id="city">{weatherData.city}</h1> <h3 id="country">, {weatherData.country}</h3>
           <br />
           <p id="time" className="date">
             Monday 13:24
           </p>
-          <span id="currentTemp">29°</span>{" "}
+          <span id="currentTemp">{weatherData.temp}°</span>{" "}
           <span id="icon">
             <img src={icon} alt="" />
           </span>
         </div>
-        <div className="col-5">
+        <div className="col-5 dicription">
           <div className="row">
             <div className="col-1"></div>
             <div className="col" id="discription">
-              sunny
+              {weatherData.discription}
             </div>
           </div>
           <div className="row">
             <div className="col-1"></div>
             <div className="col">Humidity</div>
             <div className="col" id="humidity">
-              20%
+              {weatherData.humidity}%
             </div>
           </div>
           <div className="row">
             <div className="col-1"></div>
             <div className="col">Wind</div>
             <div className="col" id="wind">
-              10 km/h
+              {weatherData.wind} km/h
             </div>
           </div>
         </div>
         <div className="col-7 border-end border-2 border-dark"></div>
       </div>
     </section>
+
   );
+  } else{ return ("Loading...");}
 }
