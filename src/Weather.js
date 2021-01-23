@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Weather.css";
 import icon from "./img/Sonne.png";
 import axios from "axios";
+import SetTime from "./SetTime";
 
 
 export default function Weather() {
@@ -13,8 +14,11 @@ export default function Weather() {
   let city = "Berlin";
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;  
   function displayWeather(response){
+    console.log(response);
     setWeatherData(
-      {city : response.data.name,
+      {
+      cityOffsettoUTC : response.data.timezone *1000,
+      city : response.data.name,
       country : response.data.sys.country,
       temp : Math.round(response.data.main.temp),
       discription:  response.data.weather[0].description,
@@ -25,15 +29,17 @@ export default function Weather() {
     setSubmitState (true)
   }
   
-  axios.get(url).then(displayWeather);
-  if (submitState === true){ return (
-    <section className="Weather">
+  
+  if (submitState === true){ 
+    
+    return (
+        <section className="Weather">
       <div className="row">
         <div className="col-7 border-end border-2 border-dark">
           <h1 id="city">{weatherData.city}</h1> <h3 id="country">, {weatherData.country}</h3>
           <br />
           <p id="time" className="date">
-            Monday 13:24
+            <SetTime timestamp={weatherData.cityOffsettoUTC}/>
           </p>
           <span id="currentTemp">{weatherData.temp}°</span>{" "}
           <span id="icon">
@@ -67,5 +73,7 @@ export default function Weather() {
     </section>
 
   );
-  } else{ return ("Loading...");}
+  } else{
+    axios.get(url).then(displayWeather);
+    return ("Loading...");}
 }
