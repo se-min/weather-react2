@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import "./Weather.css";
-import icon from "./img/Sonne.png";
 import axios from "axios";
-import SetTime from "./SetTime";
+import CurrentWeather from "./CurrentWeather";
 
 
 export default function Weather() {
@@ -11,7 +10,8 @@ export default function Weather() {
   
   
   const apiKey ="774391238c6a53bc1cf424560a1347de";
-  let city = "Berlin";
+  let [city, setCity] = useState("Berlin");
+  
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;  
   function displayWeather(response){
     console.log(response);
@@ -23,57 +23,66 @@ export default function Weather() {
       temp : Math.round(response.data.main.temp),
       discription:  response.data.weather[0].description,
       humidity :response.data.main.humidity,
-      wind : Math.round(response.data.wind.speed *3.6)
+      wind : Math.round(response.data.wind.speed *3.6),
+      icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
     })
+
 
     setSubmitState (true)
   }
+
+  function updateCity(){
+    axios.get(url).then(displayWeather);
+  }
   
+  function changeCity(event){
+    event.preventDefault();
+    updateCity();
+  }
+
+  function cityInput(event){
+    event.preventDefault();
+    setCity(event.target.value);
+    
+    
+  }
   
   if (submitState === true){ 
     
     return (
-        <section className="Weather">
+      <div className ="Weather">
+       <header className="Search">
       <div className="row">
-        <div className="col-7 border-end border-2 border-dark">
-          <h1 id="city">{weatherData.city}</h1> <h3 id="country">, {weatherData.country}</h3>
-          <br />
-          <p id="time" className="date">
-            <SetTime timestamp={weatherData.cityOffsettoUTC}/>
-          </p>
-          <span id="currentTemp">{weatherData.temp}°</span>{" "}
-          <span id="icon">
-            <img src={icon} alt="" />
-          </span>
+        <div className="col">
+          <form id="city-form" onSubmit ={changeCity}>
+            <input
+              id="city-input"
+              type="text"
+              placeholder="enter city..."
+              autoComplete="off"
+              onChange = {cityInput}
+            />
+          </form>
         </div>
-        <div className="col-5 dicription">
-          <div className="row">
-            <div className="col-1"></div>
-            <div className="col" id="discription">
-              {weatherData.discription}
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-1"></div>
-            <div className="col">Humidity</div>
-            <div className="col" id="humidity">
-              {weatherData.humidity}%
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-1"></div>
-            <div className="col">Wind</div>
-            <div className="col" id="wind">
-              {weatherData.wind} km/h
-            </div>
-          </div>
+        <div class="col">
+            <button><i class="fas fa-map-marker-alt"></i></button>
         </div>
-        <div className="col-7 border-end border-2 border-dark"></div>
+        <div className="col unit">
+          <a id="tempC" className="unit-used" href="/">
+            °C
+          </a>
+          /
+          <a id="tempF" href="/">
+            °F
+          </a>
+        </div>
       </div>
-    </section>
+    </header>
+                <CurrentWeather data ={weatherData}/>
+                </div>
+            );
 
-  );
   } else{
-    axios.get(url).then(displayWeather);
+    updateCity();
     return ("Loading...");}
 }
