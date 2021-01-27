@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "./Weather.css";
 import axios from "axios";
 import CurrentWeather from "./CurrentWeather";
-
+import Celsius from "./Celsius";
+import Fahrenheit from "./Fahrenheit";
 
 export default function Weather() {
   let [submitState, setSubmitState] = useState (false);
@@ -11,6 +12,7 @@ export default function Weather() {
   
   const apiKey ="774391238c6a53bc1cf424560a1347de";
   let [city, setCity] = useState("Berlin");
+  const [unit, setUnit] = useState ("celsius");
   
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;  
   function displayWeather(response){
@@ -46,6 +48,17 @@ export default function Weather() {
     
     
   }
+
+  function displayFahrenheit(event){
+    event.preventDefault();
+    setUnit("fahrenheit");
+
+  }
+
+  function displayCelsius(event){
+    event.preventDefault();
+    setUnit("celsius");
+  }
   
   if (submitState === true){ 
     
@@ -68,17 +81,17 @@ export default function Weather() {
             <button><i class="fas fa-map-marker-alt"></i></button>
         </div>
         <div className="col unit">
-          <a id="tempC" className="unit-used" href="/">
-            °C
+          <a onClick={displayCelsius}  href="/">
+            <Celsius unit = {unit}/>
           </a>
           /
-          <a id="tempF" href="/">
-            °F
+          <a onClick= {displayFahrenheit} href="/">
+            <Fahrenheit unit = {unit}/>
           </a>
         </div>
       </div>
     </header>
-                <CurrentWeather data ={weatherData}/>
+                <CurrentWeather data ={weatherData} unit={unit}/>
                 </div>
             );
 
