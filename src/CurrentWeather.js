@@ -8,7 +8,7 @@ export default function CurrentWeather(props){
   console.log (props.unit);
     if (props.unit === "celsius"){
     return (
-        <section className="Weather">
+        <section className="CurrentWeather">
       <div className="row">
         <div className="col-7 border-end border-2 border-dark">
           <h1 id="city">{props.data.city}</h1> <h3 id="country">, {props.data.country}</h3>
@@ -16,7 +16,7 @@ export default function CurrentWeather(props){
           <p id="time" className="date">
             <SetTime timestamp={props.data.cityOffsettoUTC}/>
           </p>
-          <span id="currentTemp">{props.data.temp }°</span>{" "}
+          <span className="temperature">{props.data.temp }°</span>{" "}
           <span id="icon">
             <img src= {props.data.icon} alt="Weather Icon" />
           </span>
@@ -50,7 +50,7 @@ export default function CurrentWeather(props){
     )
     }
     else return(
-    <section className="Weather">
+    <section className="CurrentWeather">
       <div className="row">
         <div className="col-7 border-end border-2 border-dark">
           <h1 id="city">{props.data.city}</h1> <h3 id="country">, {props.data.country}</h3>
@@ -58,7 +58,7 @@ export default function CurrentWeather(props){
           <p id="time" className="date">
             <SetTime timestamp={props.data.cityOffsettoUTC}/>
           </p>
-          <span id="currentTemp">{Math.round(props.data.temp* 9/5 + 32)}°</span>{" "}
+          <span className="temperature">{Math.round(props.data.temp* 9/5 + 32)}°</span>{" "}
           <span id="icon">
             <img src= {props.data.icon} alt="Weather Icon" />
           </span>

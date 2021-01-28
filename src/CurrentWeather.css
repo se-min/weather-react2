@@ -5,17 +5,14 @@ p {
 .discription::first-letter {
   text-transform: uppercase;
 }
-header {
-  padding: 40px 20px;
-}
 
 h1,
 h2,
 h3 {
   display: inline;
 }
-#currentTemp {
-  font-size: 40px;
+.temperature {
+  font-size: 70px;
 }
 h1 {
   font-size: 30px;
@@ -30,14 +27,14 @@ h3 {
   text-transform: capitalize;
 }
 
-CurrentWeather.Weather {
-  padding: 0 20px;
+.CurrentWeather {
+  padding: 20px 10px;
 }
 
-.Weather img {
-  width: 80px;
+.CurrentWeather img {
+  height: 100px;
   position: relative;
-  bottom: 7px;
+  bottom: 17px;
 }
 .col {
   padding: 0;

@@ -12,7 +12,7 @@ export default function App() {
       <div className="container">
         
         <Weather />
-        <Forecast/>
+        
         
       </div>
       <Subtext />

@@ -3,47 +3,15 @@ body {
   font-family: "Raleway", sans-serif;
   background-color: white;
 }
-p {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-.discription::first-letter {
-  text-transform: uppercase;
-}
-header {
-  padding: 40px 20px;
-}
-
-h1,
-h2,
-h3 {
-  display: inline;
-}
-#currentTemp {
-  font-size: 40px;
-}
-h1 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 15px;
-}
-.date {
-  font-size: 15px;
-}
-#discription::first-letter {
-  text-transform: capitalize;
-}
 
 .Weather {
-  padding: 0 20px;
+  padding: 50px 20px;
 }
 
-.Weather img {
-  width: 80px;
-  position: relative;
-  bottom: 7px;
+.Weather header {
+  padding: 0px 20px;
 }
+
 .col {
   padding: 0;
 }

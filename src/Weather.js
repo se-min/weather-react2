@@ -4,6 +4,8 @@ import axios from "axios";
 import CurrentWeather from "./CurrentWeather";
 import Celsius from "./Celsius";
 import Fahrenheit from "./Fahrenheit";
+import Forecast from "./Forecast";
+
 
 export default function Weather() {
   let [submitState, setSubmitState] = useState (false);
@@ -92,6 +94,7 @@ export default function Weather() {
       </div>
     </header>
                 <CurrentWeather data ={weatherData} unit={unit}/>
+               <Forecast city ={city}/>
                 </div>
             );
 
