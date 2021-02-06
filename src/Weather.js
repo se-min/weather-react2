@@ -18,7 +18,6 @@ export default function Weather() {
   
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;  
   function displayWeather(response){
-    console.log(response);
     setWeatherData(
       {
       cityOffsettoUTC : response.data.timezone *1000,
@@ -61,6 +60,26 @@ export default function Weather() {
     event.preventDefault();
     setUnit("celsius");
   }
+  function getLocation(event){
+    event.preventDefault();
+    navigator.geolocation.getCurrentPosition(myPosition);
+    
+
+  }
+  function myPosition(position) {
+  let lat = position.coords.latitude;
+  let long = position.coords.longitude;
+  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`;
+  axios.get(url).then(currentLocation);
+    
+  }
+
+  function currentLocation(response) {
+    console.log(response)
+    setCity(response.data.name)
+    setSubmitState(false)
+        
+  }
   
   if (submitState === true){ 
     
@@ -68,20 +87,21 @@ export default function Weather() {
       <div className ="Weather">
        <header className="Search">
       <div className="row">
-        <div className="col">
-          <form id="city-form" onSubmit ={changeCity}>
+        <div className="col-6 form">
+          <form  onSubmit ={changeCity}>
             <input
-              id="city-input"
+              className ="input"
               type="text"
               placeholder="enter city..."
               autoComplete="off"
               onChange = {cityInput}
+            
             />
+            <button onClick ={getLocation}><i class="fas fa-map-marker-alt"></i></button>
           </form>
+          
         </div>
-        <div class="col">
-            <button><i class="fas fa-map-marker-alt"></i></button>
-        </div>
+        
         <div className="col unit">
           <a onClick={displayCelsius}  href="/">
             <Celsius unit = {unit}/>
@@ -94,11 +114,11 @@ export default function Weather() {
       </div>
     </header>
                 <CurrentWeather data ={weatherData} unit={unit}/>
-               <Forecast city ={city}/>
+               <Forecast city ={weatherData.city} unit = {unit}/>
                 </div>
             );
 
   } else{
     updateCity();
-    return ("Loading...");}
+    return ("Working on it...");}
 }

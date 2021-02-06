@@ -5,7 +5,7 @@ import "./CurrentWeather.css";
  
 
 export default function CurrentWeather(props){
-  console.log (props.unit);
+  
     if (props.unit === "celsius"){
     return (
         <section className="CurrentWeather">

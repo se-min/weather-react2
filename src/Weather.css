@@ -11,17 +11,37 @@ body {
 .Weather header {
   padding: 0px 20px;
 }
+.col-6 {
+  padding: 0px;
+}
+.input {
+  width: 120px;
+  margin-right: 5px;
+  border-width: 1px;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  background-color: transparent;
+}
+textarea:focus,
+input:focus {
+  outline: none;
+}
+.submit {
+  background-color: rgb(245, 240, 240);
+  border-width: 1px;
+  border-radius: 4px;
+}
 
 .col {
   padding: 0;
 }
 
-button {
-  background-color: white;
-  color: rgb(182, 180, 180);
-  border-width: 2px;
-  border-style: outset;
-  border-color: white;
+.Weather button {
+  background-color: transparent;
+  color: grey;
+  border-style: none;
+  font-size: 20px;
 }
 
 .unit {
