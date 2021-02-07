@@ -92,7 +92,7 @@ export default function Weather() {
             <input
               className ="input"
               type="text"
-              placeholder="enter city..."
+              placeholder="Search city..."
               autoComplete="off"
               onChange = {cityInput}
             
