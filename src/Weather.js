@@ -97,9 +97,9 @@ export default function Weather() {
               onChange = {cityInput}
             
             />
-            <button onClick ={getLocation}><i class="fas fa-map-marker-alt"></i></button>
+            
           </form>
-          
+          <button onClick ={getLocation}><i class="fas fa-map-marker-alt"></i></button>
         </div>
         
         <div className="col unit">

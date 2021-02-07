@@ -1,0 +1,17 @@
+body {
+  /*font-family: "Times New Roman", Times, serif;*/
+  font-family: "Raleway", sans-serif;
+}
+
+body::after {
+  content: "";
+  background-image: url(img/himmel2.jpg);
+  background-size: cover;
+  opacity: 0.2;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
